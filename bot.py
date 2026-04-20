@@ -15,17 +15,16 @@ PROXY_URL = "socks5://адрес_порт"
 PAYMENT_TOKEN = ""
 PRICE_AMOUNT = 100 
 # -----------------
-
 logging.basicConfig(level=logging.INFO)
 dp = Dispatcher()
 
 # --- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ---
 def get_flag(ip):
+    if not ip: return "🌐"
     try:
-        # Получаем код страны по IP (бесплатное API)
+        # Получаем код страны по IP/Host
         response = requests.get(f"http://ip-api.com{ip}", timeout=5).json()
-        country_code = response.get('countryCode', 'UN') # UN если не найдено
-        # Конвертируем код страны (RU, US) в эмодзи-флаг
+        country_code = response.get('countryCode', 'UN')
         return "".join(chr(ord(c) + 127397) for c in country_code.upper())
     except:
         return "🌐"
@@ -75,14 +74,16 @@ async def show_servers(callback: types.CallbackQuery):
     exp = get_expiry(callback.from_user.id)
     if not exp or exp < datetime.now(): return await callback.answer("⚠️ Требуется подписка!", show_alert=True)
     
-    await callback.message.edit_text("⏳ Определяю локации серверов...")
+    await callback.answer("⏳ Определяю локации...")
     token = get_token()
     r = requests.get(f"{API_URL}/servers", headers={"Authorization": f"Bearer {token}"})
     servers = r.json().get("servers", [])
     
     buttons = []
     for s in servers:
-        flag = get_flag(s['ip'])
+        # Используем 'host', так как 'ip' может отсутствовать в ключе
+        srv_host = s.get('host') or s.get('ip')
+        flag = get_flag(srv_host)
         buttons.append([InlineKeyboardButton(text=f"{flag} {s['name']}", callback_data=f"srv_{s['id']}")])
     
     buttons.append([InlineKeyboardButton(text="⬅️ Назад", callback_data="menu_back")])
@@ -118,6 +119,7 @@ async def create_vpn(callback: types.CallbackQuery):
 
 @dp.callback_query(F.data == "menu_list")
 async def list_keys(callback: types.CallbackQuery):
+    await callback.answer("⏳ Поиск ключей...")
     token = get_token()
     r = requests.get(f"{API_URL}/servers", headers={"Authorization": f"Bearer {token}"})
     servers = r.json().get("servers", [])
@@ -125,12 +127,13 @@ async def list_keys(callback: types.CallbackQuery):
     buttons = []
     for s in servers:
         rc = requests.get(f"{API_URL}/servers/{s['id']}/clients", headers={"Authorization": f"Bearer {token}"})
-        flag = get_flag(s['ip'])
+        srv_host = s.get('host') or s.get('ip')
+        flag = get_flag(srv_host)
         for c in rc.json().get("clients", []):
             if u_id in str(c['name']):
                 buttons.append([InlineKeyboardButton(text=f"🔑 {flag} {s['name']} | ID:{c['id']}", callback_data=f"getkey_{c['id']}")])
     
-    if not buttons: return await callback.answer("Ключей нет")
+    if not buttons: return await callback.message.answer("Ключей не найдено")
     buttons.append([InlineKeyboardButton(text="⬅️ Назад", callback_data="menu_back")])
     await callback.message.edit_text("Ваши ключи:", reply_markup=InlineKeyboardMarkup(inline_keyboard=buttons))
 
