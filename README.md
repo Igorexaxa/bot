@@ -1,6 +1,6 @@
 # 🚀 Telegram Bot for Amnezia VPN Panel
 
-Автоматизированный Telegram-бот для продажи подписок и управления VPN-ключами. Полная интеграция с API [Amnezia VPN Panel](https://github.com).
+Автоматизированный Telegram-бот для продажи подписок и управления VPN-ключами. Полная интеграция с API [Amnezia VPN Panel](https://github.com/infosave2007/amneziavpnphp).
 
 ## ✨ Основные возможности
 
@@ -74,4 +74,4 @@ sudo systemctl start vpn-bot
 Используйте .gitignore, чтобы исключить секретные файлы из репозитория.
 🤝 Обратная связь
 Если вы нашли ошибку или хотите предложить улучшение, создайте Issue или Pull Request.
-Powered by Amnezia VPN Panel
+Powered by [Amnezia VPN Panel](https://github.com/infosave2007/amneziavpnphp)
