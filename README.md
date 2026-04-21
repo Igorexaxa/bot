@@ -43,7 +43,7 @@
 2.Настройка конфигурации:
    
 Укажите в коде или через переменные окружения:
-```bash
+``bash
 BOT_TOKEN (от @BotFather)
 ADMIN_ID (ваш ID)
 API_URL (URL вашей панели)
@@ -55,10 +55,9 @@ API_URL (URL вашей панели)
 
 ```bash
 sudo nano /etc/systemd/system/vpn-bot.service
-
-Вставьте конфигурацию:
-
-```bash
+```
+Вставьте конфигурацию
+```
 [Unit]
 Description=Telegram Amnezia VPN Bot
 After=network.target
@@ -72,6 +71,7 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
-
+```
 
 Developed for use with Amnezia [VPN Panel API](https://github.com/infosave2007/amneziavpnphp)
+```
