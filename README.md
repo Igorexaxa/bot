@@ -1,6 +1,6 @@
 # 🚀 Telegram VPN Manager for Amnezia VPN
 
-Автоматизированная система управления VPN-подписками через Telegram. Проект обеспечивает интеграцию с API панели [amneziavpnphp](https://github.com), позволяя пользователям самостоятельно управлять своими ключами.
+Автоматизированная система управления VPN-подписками через Telegram. Проект обеспечивает интеграцию с API панели [amneziavpnphp](https://github.com/infosave2007/amneziavpnphp), позволяя пользователям самостоятельно управлять своими ключами.
 
 ---
 
@@ -34,7 +34,7 @@
 
 1. **Клонирование и установка зависимостей**:
    ```bash
-   git clone https://github.com
+   git clone https://github.com/Igorexaxa/bot
    cd ВАШ_РЕПОЗИТОРИЙ
    python3 -m venv venv
    source venv/bin/activate
@@ -49,4 +49,4 @@ API_URL (URL вашей панели)
 Запуск службы (Systemd):
 Создайте файл /etc/systemd/system/vpn-bot.service для обеспечения бесперебойной работы и автозапуска после перезагрузки сервера. 
 
-Developed for use with Amnezia VPN Panel API
+Developed for use with Amnezia [VPN Panel API](https://github.com/infosave2007/amneziavpnphp)
