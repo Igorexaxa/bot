@@ -48,14 +48,16 @@ BOT_TOKEN (от @BotFather)
 ADMIN_ID (ваш ID)
 API_URL (URL вашей панели)
 Запуск службы (Systemd):
-Создайте файл /etc/systemd/system/vpn-bot.service для обеспечения бесперебойной работы и автозапуска после перезагрузки сервера. 
+Создайте файл /etc/systemd/system/vpn-bot.service для обеспечения бесперебойной работы и автозапуска после перезагрузки сервера.
 
 3. Настройка автозапуска (Systemd)
 Чтобы бот работал 24/7, создайте службу:
+
 ```bash
 sudo nano /etc/systemd/system/vpn-bot.service
 
 Вставьте конфигурацию:
+
 ```bash
 [Unit]
 Description=Telegram Amnezia VPN Bot
