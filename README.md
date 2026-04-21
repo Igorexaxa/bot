@@ -39,3 +39,14 @@
    python3 -m venv venv
    source venv/bin/activate
    pip install aiogram requests
+   
+2.Настройка конфигурации:
+   
+Укажите в коде или через переменные окружения:
+BOT_TOKEN (от @BotFather)
+ADMIN_ID (ваш ID)
+API_URL (URL вашей панели)
+Запуск службы (Systemd):
+Создайте файл /etc/systemd/system/vpn-bot.service для обеспечения бесперебойной работы и автозапуска после перезагрузки сервера. 
+
+Developed for use with Amnezia VPN Panel API
