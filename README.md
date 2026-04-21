@@ -49,4 +49,25 @@ API_URL (URL вашей панели)
 Запуск службы (Systemd):
 Создайте файл /etc/systemd/system/vpn-bot.service для обеспечения бесперебойной работы и автозапуска после перезагрузки сервера. 
 
+3. Настройка автозапуска (Systemd)
+Чтобы бот работал 24/7, создайте службу:
+sudo nano /etc/systemd/system/vpn-bot.service
+
+Вставьте конфигурацию:
+
+[Unit]
+Description=Telegram Amnezia VPN Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/path/to/bot
+ExecStart=/path/to/bot/venv/bin/python3 bot.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
 Developed for use with Amnezia [VPN Panel API](https://github.com/infosave2007/amneziavpnphp)
