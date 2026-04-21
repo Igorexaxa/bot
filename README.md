@@ -37,14 +37,44 @@ ADMIN_PASSWORD	Пароль администратора панели
 PAYMENT_TOKEN	Токен платежного провайдера (для инвойсов)
 
 Запуск
+
 python bot.py
 
-### Как опубликовать на GitHub:
-1. Создайте файл `.gitignore` и впишите туда `users.db`, `venv/`, `.env`, чтобы база данных и секреты не улетели в интернет.
-2. Создайте `requirements.txt` командой `pip freeze > requirements.txt`.
-3. Загрузите файлы в репозиторий.
 
+## Настройка автозапуска (Systemd)
 
+Чтобы бот работал 24/7 и автоматически запускался после перезагрузки сервера, создайте системную службу:
+
+1. Создайте файл службы:
+```bash
+sudo nano /etc/systemd/system/vpn-bot.service
+
+Вставьте следующее содержимое (отредактируйте пути /www/tg_bot на свои):
+
+[Unit]
+Description=Telegram Amnezia VPN Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/www/tg_bot
+ExecStart=/www/tg_bot/venv/bin/python3 /www/tg_bot/bot.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+Активируйте и запустите бота:
+bash
+sudo systemctl daemon-reload
+sudo systemctl enable vpn-bot
+sudo systemctl start vpn-bot
+Используйте код с осторожностью.
+Проверка статуса и логов:
+bash
+sudo systemctl status vpn-bot
 
 
 
