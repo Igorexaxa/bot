@@ -27,33 +27,31 @@
   
 Создайте и активируйте виртуальное окружение:
 
-bash
 python3 -m venv venv
 source venv/bin/activate
 
 
 Установите зависимости:
 
-bash
 pip install aiogram requests
-Используйте код с осторожностью.
+
 Настройте переменные окружения:
 Отредактируйте переменные в начале файла bot.py или создайте .env файл:
 BOT_TOKEN: Токен от @BotFather.
 API_URL: URL вашей панели (например, https://example.com).
 ADMIN_ID: Ваш цифровой ID в Telegram.
-
+🚀 Запуск через Systemd (Автозапуск)
+Для обеспечения работы бота 24/7 создайте службу:
+Откройте редактор:
 🚀 Запуск через Systemd (Автозапуск)
 Для обеспечения работы бота 24/7 создайте службу:
 
 Откройте редактор:
 
-bash
 sudo nano /etc/systemd/system/vpn-bot.service
 
 Вставьте конфигурацию (измените пути на свои):
 
-ini
 [Unit]
 Description=Telegram Amnezia VPN Bot
 After=network.target
@@ -68,9 +66,9 @@ RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
-Используйте код с осторожностью.
+
 Примените и запустите:
-bash
+
 sudo systemctl daemon-reload
 sudo systemctl enable vpn-bot
 sudo systemctl start vpn-bot
