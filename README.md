@@ -20,16 +20,20 @@
 ## 🛠 Установка
 
 1. **Клонируйте репозиторий:**
+   
    ```bash
-   git clone https://github.com
+   git clone https://github.com/Igorexaxa/bot
    cd ваш-репозиторий
-Используйте код с осторожностью.
+  
 Создайте и активируйте виртуальное окружение:
+
 bash
 python3 -m venv venv
 source venv/bin/activate
 Используйте код с осторожностью.
+
 Установите зависимости:
+
 bash
 pip install aiogram requests
 Используйте код с осторожностью.
@@ -38,13 +42,17 @@ pip install aiogram requests
 BOT_TOKEN: Токен от @BotFather.
 API_URL: URL вашей панели (например, https://example.com).
 ADMIN_ID: Ваш цифровой ID в Telegram.
+
 🚀 Запуск через Systemd (Автозапуск)
 Для обеспечения работы бота 24/7 создайте службу:
+
 Откройте редактор:
+
 bash
 sudo nano /etc/systemd/system/vpn-bot.service
-Используйте код с осторожностью.
+
 Вставьте конфигурацию (измените пути на свои):
+
 ini
 [Unit]
 Description=Telegram Amnezia VPN Bot
@@ -66,12 +74,14 @@ bash
 sudo systemctl daemon-reload
 sudo systemctl enable vpn-bot
 sudo systemctl start vpn-bot
-Используйте код с осторожностью.
+
 📂 Структура базы данных
 Бот использует SQLite (users.db) для хранения данных о пользователях и сроках их подписки. Файл создается автоматически при первом запуске.
+
 🛡 Безопасность
 Никогда не публикуйте свой users.db и файл с токенами в открытый доступ.
 Используйте .gitignore, чтобы исключить секретные файлы из репозитория.
+
 🤝 Обратная связь
 Если вы нашли ошибку или хотите предложить улучшение, создайте Issue или Pull Request.
 Powered by [Amnezia VPN Panel](https://github.com/infosave2007/amneziavpnphp)
