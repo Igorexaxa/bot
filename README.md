@@ -39,7 +39,7 @@
    python3 -m venv venv
    source venv/bin/activate
    pip install aiogram requests
-   
+
 2.Настройка конфигурации:
    
 Укажите в коде или через переменные окружения:
